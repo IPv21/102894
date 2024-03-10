@@ -7,8 +7,6 @@ public class Demo {
     private String name;
     private int age;
 
-
-
     // Constructor
     public Demo(String name, int age) {
         this.name = name;
@@ -29,8 +27,6 @@ public class Demo {
         return age;
     }
 
-
-
     public void setAge(int age) {
         this.age = age;
     }
@@ -47,12 +43,12 @@ public class Demo {
     public int hashCode() {
         return Objects.hash(name, age);
     }
-}
 
-@Override
-public String toString() {
-    return "Demo{" +
-            "name='" + name + '\'' +
-            ", age=" + age +
-            '}';
+    @Override
+    public String toString() {
+        return "Demo{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }

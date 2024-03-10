@@ -1,10 +1,11 @@
 package com.technews.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException;
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+//import javax.persistence.*;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Objects;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "post")
 public class Post implements Serializable {
+    private Object userId = null;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -34,8 +36,10 @@ public class Post implements Serializable {
     private Date updatedAt = new Date();
     @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
+    private Object updateAt;
 
-    public Post() {
+    public Post(Object userId) {
+        this.userId = userId;
     }
 
     public Post(Integer id, String title, String postUrl, int voteCount){
@@ -44,6 +48,10 @@ public class Post implements Serializable {
         this.postUrl = postUrl;
         this.voteCount = voteCount;
         this.userId = userId;
+    }
+
+    public Post() {
+        
     }
 
     public Integer getId() {
