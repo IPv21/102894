@@ -1,4 +1,4 @@
-Interface Movement {
+interface Movement {
 public void run();
 public void jump();
 }
